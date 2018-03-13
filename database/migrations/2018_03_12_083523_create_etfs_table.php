@@ -19,13 +19,12 @@ class CreateEtfsTable extends Migration
             $table->unsignedInteger('kind_id');
             $table->unsignedInteger('etf_type_id');
             $table->string('brand');
-            $table->integer('index_tracked');
+            $table->string('index_tracked');
             $table->date('inception');
-            $table->float('tax');
+            $table->string('tax');
             $table->float('expense_ratio');
             $table->string('volatility');
             $table->string('method');
-            $table->date('fixed_date');
 
             $table->timestamps();
         });

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAssetTypesTable extends Migration
+class AddForeignKeyToTradeHistoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class CreateAssetTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('asset_types', function (Blueprint $table) {
-            $table->increments('id');
-
-            $table->string('name');
-
-            $table->timestamps();
+        Schema::table('trade_histories', function (Blueprint $table) {
+            $table->foreign('trade_type_id')->references('id')->on('trade_types')->onDelete('cascade');
         });
     }
 
@@ -29,6 +25,6 @@ class CreateAssetTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('asset_types');
+        //
     }
 }

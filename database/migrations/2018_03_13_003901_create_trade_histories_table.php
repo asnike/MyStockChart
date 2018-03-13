@@ -22,7 +22,7 @@ class CreateTradeHistoriesTable extends Migration
             $table->date('date');
             $table->float('price');
             $table->unsignedInteger('cnt');
-            $table->enum('trade_type', ['매수', '매도']);
+            $table->unsignedInteger('trade_type_id');
 
             $table->timestamps();
         });
