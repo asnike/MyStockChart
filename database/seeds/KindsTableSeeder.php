@@ -11,7 +11,6 @@ class KindsTableSeeder extends Seeder
      */
     public function run()
     {
-        //
         $items = [
             '주식',   //1
             '채권',   //2
@@ -50,7 +49,7 @@ class KindsTableSeeder extends Seeder
             ['name'=>'리츠', 'parent_id'=>6], //25
         ];
         foreach ($items as $item){
-            \App\Kind::create(['name'=>$item]);
+            \App\Kind::create(['name'=>$item['name'], 'parent_id'=>$item['parent_id']]);
         }
 
         $items = [
@@ -100,7 +99,7 @@ class KindsTableSeeder extends Seeder
             ['name'=>'옥수수', 'parent_id'=>18],
         ];
         foreach ($items as $item){
-            \App\Kind::create(['name'=>$item]);
+            \App\Kind::create(['name'=>$item['name'], 'parent_id'=>$item['parent_id']]);
         }
     }
 }

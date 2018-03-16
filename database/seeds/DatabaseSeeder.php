@@ -18,6 +18,15 @@ class DatabaseSeeder extends Seeder
         \App\TradeType::truncate();
         $this->call(TradeTypesTableSeeder::class);
 
+        \App\Kind::truncate();
+        $this->call(KindsTableSeeder::class);
+
+        \App\ItemType::truncate();
+        $this->call(ItemTypesTableSeeder::class);
+
+        \App\EtfType::truncate();
+        $this->call(EtfTypesTableSeeder::class);
+
 
 
         if(config('database.default') !== 'sqlite'){

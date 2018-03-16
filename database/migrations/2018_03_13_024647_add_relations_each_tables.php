@@ -39,11 +39,11 @@ class AddRelationsEachTables extends Migration
             $table->foreign('user_item_id')->references('id')->on('user_items')->onDelete('cascade');
         });
         Schema::table('items', function (Blueprint $table) {
-            $table->foreign('asset_type_id')->references('id')->on('asset_types')->onDelete('cascade');
+            //$table->foreign('asset_type_id')->references('id')->on('asset_types')->onDelete('cascade');
         });
         Schema::table('etfs', function (Blueprint $table) {
             $table->foreign('kind_id')->references('id')->on('kinds')->onDelete('cascade');
-            $table->foreign('etf_type_id')->references('id')->on('eft_types')->onDelete('cascade');
+            $table->foreign('etf_type_id')->references('id')->on('etf_types')->onDelete('cascade');
         });
         Schema::table('stocks', function (Blueprint $table) {
             $table->foreign('kind_id')->references('id')->on('kinds')->onDelete('cascade');
