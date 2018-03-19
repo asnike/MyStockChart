@@ -91,12 +91,16 @@ class AuthController extends Controller
         ]);
     }
     public function create(Request $request){
+
+        $validator = $this->validator($request->all());
+        if($validator->fails()){
+            return response()->json(['errors'=>$validator->errors()]);
+        }
+
         return User::create([
             'name'=>$request->name,
             'email'=>$request->email,
             'password'=>bcrypt($request->password)
         ]);
     }
-
-
 }
