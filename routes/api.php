@@ -31,5 +31,5 @@ Route::group([
     Route::post('me', 'AuthController@me');
     Route::post('register', 'AuthController@create');
 
-    Route::post('test', 'AuthController@test');
+    Route::post('naver', 'AuthController@checkNaver');
 });

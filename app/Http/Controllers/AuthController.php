@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -16,7 +17,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login', 'create']]);
+        $this->middleware('auth:api', ['except' => ['login', 'create', 'checkNaver']]);
     }
 
     /**
@@ -101,6 +102,34 @@ class AuthController extends Controller
             'name'=>$request->name,
             'email'=>$request->email,
             'password'=>bcrypt($request->password)
+        ]);
+    }
+    public function checkNaver(Request $request){
+        $credentials = request(['email', 'password']);
+
+        if (! $token = auth()->attempt($credentials)) {
+
+            //return response()->json(['error' => 'Unauthorized'], 401);
+            $user = User::create([
+                'name'=>'Naver_User_'.Carbon::now()->timestamp,
+                'naver_nick'=>$request->naver_nick,
+                'naver_profile_img'=>$request->naver_profile_img,
+                'email'=>$request->email,
+                'password'=>bcrypt($request->password)
+            ]);
+            return response()->json([
+                'result'=>[
+                    'code'=>200,
+                    'user'=>$user
+                ]
+            ]);
+        }
+        $respond = $this->respondWithToken($token);
+        return response()->json([
+            'result'=>[
+                'code'=>200,
+                'token'=>$respond,
+            ]
         ]);
     }
 }
