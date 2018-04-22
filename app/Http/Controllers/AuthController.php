@@ -117,10 +117,12 @@ class AuthController extends Controller
                 'email'=>$request->email,
                 'password'=>bcrypt($request->password)
             ]);
+            $token = auth()->attempt($credentials);
             return response()->json([
                 'result'=>[
                     'code'=>200,
-                    'user'=>$user
+                    'user'=>$user,
+                    'access_token'=>$token,
                 ]
             ]);
         }
