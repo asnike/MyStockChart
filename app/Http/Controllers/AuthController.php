@@ -111,6 +111,7 @@ class AuthController extends Controller
             //return response()->json(['error' => 'Unauthorized'], 401);
             $user = User::create([
                 'name'=>'Naver_User_'.Carbon::now()->timestamp,
+                'naver_uid'=>$request->password,
                 'naver_nick'=>$request->naver_nick,
                 'naver_profile_img'=>$request->naver_profile_img,
                 'email'=>$request->email,
