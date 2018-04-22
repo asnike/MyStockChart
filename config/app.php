@@ -161,6 +161,8 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
+
+        Barryvdh\Cors\ServiceProvider::class,
     ],
 
     /*
